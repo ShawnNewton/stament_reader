@@ -1,20 +1,21 @@
-use pdf_extract::extract_text;
 
-use std::path::PathBuf;
+use lopdf::Document;
 
+fn main() {
+    let file = "";
+    //load pdf as Document
+    let doc = Document::load(file);
+   
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let pdf_location = "";
-
-    // Read the PDF file as bytes
-    let file = PathBuf::from(&pdf_location);
-
-
-    // Extract text from the PDF
-    let text = extract_text(&file)?;
-    
-    // Print the extracted text
-    println!("Extracted text:\n{}", text);
-    
-    Ok(())
+    match doc {
+        Ok(document) => {
+            let text = document.extract_text(&[2]);//Read the second page
+            println!("Total pages: {:?}", text);//print to console
+        }
+        //error printing
+        Err(err) => {
+            eprintln!("{err}")
+        }
+    }
 }
+
