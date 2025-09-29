@@ -15,7 +15,7 @@ fn main() {
                 texts.push(text.unwrap_or_default());//add extracted text go array
             }
 
-            println!("Text on page {}: {}", 42, texts[41]);//print array
+            println!("Text on page {}: {}", 3, texts[1]);//print array
         }
         Err(err) => eprintln!("Error: {}", err),
     }
