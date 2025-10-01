@@ -1,8 +1,9 @@
+mod secrets;
 
 use lopdf::Document;
 
 fn main() {
-    let file = "";
+    let file = secrets::secrets::FILE_PATH;
 
     match Document::load(file) {
         Ok(document) => {
@@ -15,7 +16,9 @@ fn main() {
                 texts.push(text.unwrap_or_default());//add extracted text go array
             }
 
-            println!("Text on page {}: {}", 3, texts[1]);//print array
+            for text in &texts { //print array
+                print!("{} \n\n\n", text);
+            }
         }
         Err(err) => eprintln!("Error: {}", err),
     }
